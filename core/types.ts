@@ -35,8 +35,8 @@ export type NodebookInfo = {
   title: string;
   coverUrl: string;
   description: string;
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt: number;
+  modifiedAt: number;
   privacy: 'private' | 'public';
   // author: id
 };
@@ -49,16 +49,18 @@ export type LayerInfo = {
 export type FileInfo = {
   id: string;
   name: string;
-  uploadedAt: Date;
+  uploadedAt: number;
   url: string;
   size: number;
 };
 
 export type NodeInfo = Rect & {
   id: string;
+  createdAt: number;
   content: string;
   layerId: string;
   // parentId: string
+  autosize: boolean;
   background: string;
   border: string;
   icon: Maybe<IconName>;
@@ -106,7 +108,9 @@ export type Sticker = Rect & {
 
 export type Node = Rect & {
   id: string;
+  createdAt: number;
   content: string;
+  autosize: boolean;
   style: {
     background: string;
     border: string;
@@ -134,4 +138,22 @@ export type Layer = {
   nodes: Node[];
   stickers: Sticker[];
   visible: boolean;
+};
+
+// -----------------------------------------------------------------------------
+
+export type NodebookPageState = {
+  nodebook: NodebookInfo;
+  // layers: Layer[];
+  nodes: Node[];
+  stickers: Sticker[];
+  links: Link[];
+  sidebar: {
+    visible: boolean;
+    width: number;
+  };
+  selection: {
+    links: Link[];
+    nodes: Node[];
+  };
 };

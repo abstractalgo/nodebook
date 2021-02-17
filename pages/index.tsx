@@ -1,4 +1,4 @@
-import MetaTags from '../components/MetaTags'
+import MetaTags from '../components/MetaTags';
 
 export default function Home() {
   return (
@@ -7,5 +7,5 @@ export default function Home() {
 
       <h1>cao</h1>
     </div>
-  )
+  );
 }

@@ -39,6 +39,7 @@ export const transformInfo = ({ layers, links, nodebook, nodes, stickers }: Node
         .map((node) => ({
           id: node.id,
           content: node.content,
+          autosize: node.autosize,
           style: {
             background: node.background,
             border: node.border,
