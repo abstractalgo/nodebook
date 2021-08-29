@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Layer, NodebookPageState } from '../core/types';
+import { Group } from '../core/types';
 import { InputGroup } from '@blueprintjs/core';
-import LayersPanel from './LayersPanel';
-import styled from 'styled-components'
+import GroupsPanel from './GroupsPanel';
+import styled from 'styled-components';
+import { useApp } from '../core/store';
 
 const SidebarWrapper = styled.div`
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
   height: 100vh;
-  background: #E1E8ED;
+  background: #e1e8ed;
   padding: 5px;
   display: grid;
   grid-auto-flow: row;
@@ -22,26 +23,23 @@ const SidebarWrapper = styled.div`
   }
 `;
 
-type SidebarProps = {
-  layers: Layer[];
-  createNewLayer: () => void;
-  deleteLayer: (layer: Layer) => void;
-  renameLayer: (layer: Layer, name: string) => void;
-  toggleLayer: (layer: Layer) => void
-  config: NodebookPageState['sidebar']
-};
-
-const Sidebar: React.FC<SidebarProps> = ({ config: { visible, width }, ...rest }) => {
+const Sidebar: React.FC = () => {
   const [query, setQuery] = useState('');
 
+  const {
+    sidebar: { visible, width },
+  } = useApp();
+
   if (!visible) {
-    return null
+    return null;
   }
 
   return (
-    <SidebarWrapper style={{
-      width: `${width}px`
-    }}>
+    <SidebarWrapper
+      style={{
+        width: `${width}px`,
+      }}
+    >
       <div className="search">
         <InputGroup
           fill
@@ -54,10 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ config: { visible, width }, ...rest }
         />
       </div>
 
-      <LayersPanel
-        {...rest}
-        query={query}
-      />
+      <GroupsPanel query={query} />
     </SidebarWrapper>
   );
 };

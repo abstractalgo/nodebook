@@ -3,9 +3,6 @@ import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document<{ isProduction: boolean }> {
   static async getInitialProps(ctx) {
-    // for applying styled-components server-side as per
-    // stackoverflow.com/a/59672654/1895436
-    // (https://github.com/vercel/next.js/blob/canary/examples/with-styled-components/pages/_document.js)
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -18,7 +15,6 @@ class MyDocument extends Document<{ isProduction: boolean }> {
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
-        isProduction: process.env.NODE_ENV === 'production',
         styles: (
           <>
             {initialProps.styles}

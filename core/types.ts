@@ -4,17 +4,19 @@ export type NodebookPageInfo = {
   nodebook: NodebookInfo;
   nodes: NodeInfo[];
   links: LinkInfo[];
-  layers: LayerInfo[];
+  groups: GroupInfo[];
   stickers: StickerInfo[];
 };
 
 export type NodebookPageProps = {
   nodebook: NodebookInfo;
-  layers: Layer[];
+  nodes: Node[];
+  stickers: Sticker[];
   links: Link[];
+  groups: Group[];
 };
 
-export type Maybe<T> = T | null;
+export type Maybe<T> = null | T;
 
 export interface Rect {
   cx: number;
@@ -32,18 +34,19 @@ export interface AABB {
 
 export type NodebookInfo = {
   id: string;
+  createdAt: number;
   title: string;
   coverUrl: string;
   description: string;
-  createdAt: number;
   modifiedAt: number;
   privacy: 'private' | 'public';
   // author: id
 };
 
-export type LayerInfo = {
+export type GroupInfo = {
   id: string;
-  name: string;
+  title: string;
+  visible: boolean;
 };
 
 export type FileInfo = {
@@ -58,14 +61,14 @@ export type NodeInfo = Rect & {
   id: string;
   createdAt: number;
   content: string;
-  layerId: string;
+  groupId: Maybe<string>;
   // parentId: string
   autosize: boolean;
   background: string;
   border: string;
-  icon: Maybe<IconName>;
   borderWidth: number;
-  files: FileInfo[];
+  // icon: Maybe<IconName>; // inside the only existing h1
+  // files: FileInfo[]; // these are just links that get generated when you drag-n-drop files on nodes or canvas, similar like on Github. same goes for images and videos
   // no comments, since it's not social
 };
 
@@ -81,12 +84,21 @@ export type LinkInfo = {
   width: number;
 };
 
-export type StickerType = 'circle' | 'rect';
+export type StickerType =
+  | {
+      shape: 'ellipse';
+      cx: number;
+      cy: number;
+      r: number;
+    }
+  | { shape: 'rect'; cx: number; cy: number; width: number; height: number }
+  | { shape: 'path'; path: string };
 
-export type StickerInfo = Rect & {
+export type StickerInfo = Rect & { path: string } & {
   id: string;
-  layerId: string;
-  type: StickerType;
+  title: string;
+  groupId: string;
+  shape: StickerType['shape'];
   background: string;
   border: string;
   borderWidth: number;
@@ -96,34 +108,37 @@ export type StickerInfo = Rect & {
 
 export type File = FileInfo;
 
-export type Sticker = Rect & {
+export type Sticker = {
   id: string;
+  title: string;
   type: StickerType;
   style: {
     background: string;
     border: string;
     borderWidth: number;
   };
+  group: Group;
 };
 
 export type Node = Rect & {
   id: string;
   createdAt: number;
   content: string;
-  autosize: boolean;
   style: {
+    autosize: boolean;
     background: string;
     border: string;
     borderWidth: number;
-    icon: Maybe<IconName>;
+    // icon: Maybe<IconName>; // inside the only existing h1
   };
-  files: File[];
+  group: Group;
+  // files: File[]; // these are just links that get generated when you drag-n-drop files on nodes or canvas, similar like on Github. same goes for images and videos
 };
 
 export type Link = {
   id: string;
-  fromId: string;
-  toId: string;
+  fromNode: Node;
+  toNode: Node;
   content: string;
   style: {
     shape: LinkShape;
@@ -132,28 +147,8 @@ export type Link = {
   };
 };
 
-export type Layer = {
+export type Group = {
   id: string;
-  name: string;
-  nodes: Node[];
-  stickers: Sticker[];
+  title: string;
   visible: boolean;
-};
-
-// -----------------------------------------------------------------------------
-
-export type NodebookPageState = {
-  nodebook: NodebookInfo;
-  // layers: Layer[];
-  nodes: Node[];
-  stickers: Sticker[];
-  links: Link[];
-  sidebar: {
-    visible: boolean;
-    width: number;
-  };
-  selection: {
-    links: Link[];
-    nodes: Node[];
-  };
 };

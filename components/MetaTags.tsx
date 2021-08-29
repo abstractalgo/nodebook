@@ -12,7 +12,7 @@ const Config = {
 const MetaTags: React.FC<{
   title?: string;
   url?: string;
-  rawTitle?: boolean
+  rawTitle?: boolean;
   description?: string;
   image?: string;
   bigImage?: boolean;
