@@ -1,9 +1,9 @@
 import { Nodebook } from "nodebook";
 import { FC } from "react";
-import { Nodes, CONFIG } from "./content/schema";
-import { CONTENT } from "./content/content";
+import { Nodes, CONFIG } from "../content/schema";
+import { CONTENT } from "../content/content";
 
-export const App: FC = () => {
+export const IndexPage: FC = () => {
   return (
     <Nodebook<Nodes>
       className="w-[100vw] h-[100vh] overflow-hidden relative"
