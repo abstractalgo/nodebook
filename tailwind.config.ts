@@ -1,9 +1,17 @@
 import { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{ts,tsx}",
+    "!./src/nodebook/**/*.{ts,tsx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        m1: "max-content 1fr",
+      },
+    },
   },
   plugins: [],
 };

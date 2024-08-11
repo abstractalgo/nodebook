@@ -16,7 +16,7 @@ import "@xyflow/react/dist/style.css";
 
 export type NodebookProps<T extends NodeType<string, Record<string, unknown>>> =
   {
-    className: string;
+    className?: string;
     children?: ReactNode;
     config: Config<T>;
     content: T[];

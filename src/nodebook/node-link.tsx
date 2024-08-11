@@ -1,8 +1,8 @@
-import { Entry } from ".";
+import { NodeType } from ".";
 import { FC, ReactNode } from "react";
 
 type NodeLinkProps = {
-  id: NonNullable<Entry<string, Record<string, unknown>>["id"]>;
+  id: NonNullable<NodeType<string, Record<string, unknown>>["id"]>;
   children: ReactNode;
 };
 
