@@ -1,34 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### todo
 
-## Getting Started
+- who to remind
+    - [ ] email
+        - [ ] manually entered list
+        - [ ] import from 3rd-party service
+        - [ ] import csv, xlsx etc
+    - [ ] sms
+    - [ ] activate a hook with data (some other service send emails, SendGrid or whatever)
+- message
+    - [ ] simple text
+    - [ ] some calculated text
+- scheduling
+    - [ ] first occurence + repeat + after that
+    - [ ] (list of first occurences + their repeats + limits)[]
+    - [ ] snooze
+        - silence
+        - add extra reminders ("ah, shit, can't do now, but remind me in 6 hours from now")
+    - repeat
+        - rates
+            - every N minutes/hours/days/weeks/months/years
+            - every Nth of month
+            - every M-S day of the week
+            - every day/week/month/year on...
+        - limit
+            - forever
+            - until date
+            - N times
+- spam prevention
+    - inside email have a "block" button -> blacklists email
+- [ ] browser extension
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+-------------------------------
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- emails into actionable items
+- calendar to<>from actionable items
+- like front
+- but also with reminders
+- event-driven system
+- somebody needs to activate an event
+    - browser plugin
+- you need to subscribe to event
+    - subscribe to being notified by the event of certain type
+    - snooze events of certain type
+- "i want to know when applications for grant open here."
+    - then they open applications and activate a grant.
+    - somebody needs to trigger an event.
+- pull pane for quick management, not web-based
+- serves as "event system" - gathers events and notifications - your "pulse".
+- events across two dimensions - time and type (similar to front).
+    - but front is only time and contacts.
+    - we need something for general, any "event", not just when we are contacted.
+- zapier basically, but something that works with zapier directly - i.e. just reads data from it, doesn't do anything special by itself.
+- tweetdeck
+- events catcher, cathing zapier events as well
+- notifications into actionable items
+- more control:
+    - don't see of that type/category, snooze
+    - assign to someone else (collaborative aspect can be really cool)
+- cumulative events (debounced) => all events into one until you act on it (i.e. "see all these signups")
+- https://twitter.com/paulg/status/1296723597642412032
+    - https://twitter.com/EvanDowning/status/1296785298009939968
