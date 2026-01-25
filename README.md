@@ -10,3 +10,7 @@ The main components are as following:
   - while the changes that are being made are recorded as operational transforms, ultimately, only the fully derived state will be getting merged into the repo, and so operational transformers are only a temporary artifact within a PR, but won't be persisted in the repo after the merge
 
 So, we are building a Github app or a bot, that somebody will be able to install in their GitHub repo that will, based on the content within that repo, generate GitHub pages that visualize the content as a graph, and enable for that entire contributing workflow to other people over their repo's content.
+
+I think we will need Github authentication and ability to set up an app or a bot. I'm not sure what exactly we'll need, so feel free to suggest me what should work better, so that it can enable people to get that thing installed within their repos and visualize the content and unlock all those other workflows.
+
+I think we will also need: the actual app/bot/library that will enable these things, but also a demo repo that we will use to testing over. I'm not sure how exactly to achieve easily this so I'm open to suggestions.
